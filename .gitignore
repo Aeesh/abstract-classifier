@@ -5,8 +5,19 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+
 # ======================
 # Virtual environments
 # ======================
 venv/
 .env
+
+
+saved_model/
+data/train.csv
+data/val.csv
+data/test.csv
+*.out
+*.err
+logs/
+bin/

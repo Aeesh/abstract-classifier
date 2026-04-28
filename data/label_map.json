@@ -1,0 +1,29 @@
+{
+  "id2label": {
+    "0": "math.AC \u2014 Commutative Algebra",
+    "1": "cs.CV \u2014 Computer Vision",
+    "2": "cs.AI \u2014 Artificial Intelligence",
+    "3": "cs.SY \u2014 Systems and Control",
+    "4": "math.GR \u2014 Group Theory",
+    "5": "cs.CE \u2014 Computational Engineering",
+    "6": "cs.PL \u2014 Programming Languages",
+    "7": "cs.IT \u2014 Information Theory",
+    "8": "cs.DS \u2014 Data Structures & Algorithms",
+    "9": "cs.NE \u2014 Neural & Evolutionary Computing",
+    "10": "math.ST \u2014 Statistics Theory"
+  },
+  "label2id": {
+    "0": 0,
+    "1": 1,
+    "2": 2,
+    "3": 3,
+    "4": 4,
+    "5": 5,
+    "6": 6,
+    "7": 7,
+    "8": 8,
+    "9": 9,
+    "10": 10
+  },
+  "num_labels": 11
+}
