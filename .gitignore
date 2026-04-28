@@ -21,3 +21,4 @@ data/test.csv
 *.err
 logs/
 bin/
+wandb/
