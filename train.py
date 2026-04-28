@@ -25,7 +25,7 @@ CONFIG = {
     "model_name": "distilbert-base-uncased",
     "max_length": 512,
     "batch_size": 16,
-    "epochs": 1,
+    "epochs": 6,
     "learning_rate": 2e-5,
     "warmup_ratio": 0.1,     # 10% of steps used for LR warmup
     "weight_decay": 0.01,
@@ -102,9 +102,9 @@ wandb.config.update({"total_params": total_params})
 train_dataset = AbstractDataset(CONFIG["train_data_dir"], tokenizer, CONFIG["max_length"])
 val_dataset = AbstractDataset(CONFIG["val_data_dir"], tokenizer, CONFIG["max_length"])
 
-# TODO: Remove this after testing
-train_dataset.df = train_dataset.df.head(64)
-val_dataset.df = val_dataset.df.head(32)
+# # TODO: Remove this after testing
+# train_dataset.df = train_dataset.df.head(64)
+# val_dataset.df = val_dataset.df.head(32)
 
 train_loader = DataLoader(train_dataset, batch_size=CONFIG["batch_size"], shuffle=True, num_workers=CONFIG["num_workers"])
 val_loader = DataLoader(val_dataset, batch_size=CONFIG["batch_size"], shuffle=False, num_workers=CONFIG["num_workers"])
@@ -207,7 +207,7 @@ for epoch in range(CONFIG["epochs"]):
     print(f"\nEpoch {epoch+1}/{CONFIG['epochs']}")
     print(f"  Train loss : {avg_train_loss:.4f}")
     print(f"  Val loss   : {val_loss:.4f}")
-    print(f"  Val acc    : {val_acc:.4f}")
+    print(f"  Val acc    : {val_accuracy:.4f}")
     print(f"  Val macro F1: {val_f1:.4f}\n")
 
     # Log epoch metrics to WandB
@@ -215,7 +215,7 @@ for epoch in range(CONFIG["epochs"]):
         "epoch": epoch + 1,
         "train_loss": avg_train_loss,
         "val_loss": val_loss,
-        "val_accuracy": val_acc,
+        "val_accuracy": val_accuracy,
         "val_macro_f1": val_f1
     })
 
