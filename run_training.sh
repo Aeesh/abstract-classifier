@@ -9,7 +9,6 @@
 #SBATCH --output=logs/train_%j.out
 #SBATCH --error=logs/train_%j.err
 
-mkdir -p logs
 
 module load anaconda3
 conda activate arxiv-ml
@@ -21,3 +20,12 @@ export WANDB_API_KEY= WANDB_API_KEY
 
 
 python train.py
+
+# # Submit
+# sbatch run_training.sh
+
+# # Check status
+# squeue -u $USER
+
+# # Watch output live
+# tail -f logs/train_JOBID.out
