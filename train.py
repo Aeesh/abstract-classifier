@@ -3,6 +3,7 @@ import pandas as pd
 import json
 import numpy as np
 import wandb
+import os
 
 from torch.utils.data import Dataset, DataLoader
 from transformers import (
@@ -15,7 +16,8 @@ from torch.optim import AdamW
 from sklearn.metrics import accuracy_score, f1_score
 from sklearn.utils.class_weight import compute_class_weight
 
-import os
+from util import AbstractDataset
+
 
 ####### config #######
 CONFIG = {
@@ -50,33 +52,6 @@ num_labels = maps["num_labels"]
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(f"Using device: {device}")
 
-####### Dataset Class #######
-class AbstractDataset(Dataset):
-    def __init__(self, csv_path, tokenizer, max_length):
-        self.df = pd.read_csv(csv_path)
-        self.tokenizer = tokenizer
-        self.max_length = max_length
-
-    def __len__(self):
-        return len(self.df)
-
-    def __getitem__(self, idx):
-        row = self.df.iloc[idx]
-        text = str(row['abstract'])
-        label = int(row['label'])
-
-        encoding = self.tokenizer(
-            text,
-            max_length=self.max_length,
-            padding='max_length',
-            truncation=True,
-            return_tensors='pt'
-        )
-        return {
-            'input_ids': encoding['input_ids'].squeeze(),  # remove batch dimension
-            'attention_mask': encoding['attention_mask'].squeeze(), #
-            'label': torch.tensor(label, dtype=torch.long) # convert label to tensor
-        }
 
 ####### Load tokenizer and model #######
 print("Loading tokenizer and model...")
