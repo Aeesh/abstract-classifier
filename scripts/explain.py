@@ -106,10 +106,10 @@ def visualize_attributions(tokens, attributions, title="Token Attributions"):
     plt.tight_layout()
     plt.savefig("token_attributions.png", dpi=150)
     print("Attribution plot saved to token_attributions.png")
-    plt.show()
 
 if __name__ == "__main__":
 
+    sample_abstract_name = "DFT.txt"
     sample_abstract = """
         We report a first-principles density functional theory
         study with Hubbard U corrections (DFT+U) on four binary
@@ -147,6 +147,6 @@ if __name__ == "__main__":
         title=f"Token Attributions → {result['predicted_class']}"
     )
 
-    with open("explanation.json", "w") as f:
+    with open(f"explanation_{sample_abstract_name}.json", "w") as f:
         json.dump(result, f)
-    print("\nExplanation details saved to explanation.json")
+    print(f"\nExplanation details saved to explanation_{sample_abstract_name}.json")
