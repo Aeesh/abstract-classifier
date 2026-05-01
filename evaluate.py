@@ -10,7 +10,7 @@ from sklearn.metrics import (
     accuracy_score, f1_score, classification_report, confusion_matrix
 )
 
-from util import AbstractDataset
+from utils import AbstractDataset
 
 
 SAVED_DIR = "saved_model"
