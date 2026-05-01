@@ -1,0 +1,85 @@
+{
+  "test_accuracy": 0.88,
+  "macro_f1": 0.8772885341329922,
+  "per_class": {
+    "math.AC \u2014 Commutative Algebra": {
+      "precision": 0.9711538461538461,
+      "recall": 0.9528301886792453,
+      "f1-score": 0.9619047619047619,
+      "support": 212.0
+    },
+    "cs.CV \u2014 Computer Vision": {
+      "precision": 0.8882978723404256,
+      "recall": 0.8608247422680413,
+      "f1-score": 0.8743455497382199,
+      "support": 194.0
+    },
+    "cs.AI \u2014 Artificial Intelligence": {
+      "precision": 0.6904761904761905,
+      "recall": 0.7073170731707317,
+      "f1-score": 0.6987951807228916,
+      "support": 205.0
+    },
+    "cs.SY \u2014 Systems and Control": {
+      "precision": 0.8365758754863813,
+      "recall": 0.9227467811158798,
+      "f1-score": 0.8775510204081632,
+      "support": 233.0
+    },
+    "math.GR \u2014 Group Theory": {
+      "precision": 0.9655172413793104,
+      "recall": 0.9572649572649573,
+      "f1-score": 0.9613733905579399,
+      "support": 234.0
+    },
+    "cs.CE \u2014 Computational Engineering": {
+      "precision": 0.8918918918918919,
+      "recall": 0.8418367346938775,
+      "f1-score": 0.8661417322834646,
+      "support": 196.0
+    },
+    "cs.PL \u2014 Programming Languages": {
+      "precision": 0.8804780876494024,
+      "recall": 0.91701244813278,
+      "f1-score": 0.8983739837398373,
+      "support": 241.0
+    },
+    "cs.IT \u2014 Information Theory": {
+      "precision": 0.8669354838709677,
+      "recall": 0.9110169491525424,
+      "f1-score": 0.8884297520661157,
+      "support": 236.0
+    },
+    "cs.DS \u2014 Data Structures & Algorithms": {
+      "precision": 0.9302325581395349,
+      "recall": 0.8805031446540881,
+      "f1-score": 0.9046849757673667,
+      "support": 318.0
+    },
+    "cs.NE \u2014 Neural & Evolutionary Computing": {
+      "precision": 0.8585858585858586,
+      "recall": 0.776255707762557,
+      "f1-score": 0.815347721822542,
+      "support": 219.0
+    },
+    "math.ST \u2014 Statistics Theory": {
+      "precision": 0.8828828828828829,
+      "recall": 0.9245283018867925,
+      "f1-score": 0.9032258064516129,
+      "support": 212.0
+    },
+    "accuracy": 0.88,
+    "macro avg": {
+      "precision": 0.8784570717142447,
+      "recall": 0.8774670026164993,
+      "f1-score": 0.8772885341329922,
+      "support": 2500.0
+    },
+    "weighted avg": {
+      "precision": 0.8812933867820295,
+      "recall": 0.88,
+      "f1-score": 0.8799627179216964,
+      "support": 2500.0
+    }
+  }
+}
