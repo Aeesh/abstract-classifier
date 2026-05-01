@@ -49,7 +49,7 @@ label_names = [id2label[i] for i in range(num_labels)]
 accuracy = accuracy_score(all_labels, all_preds)
 macro_f1 = f1_score(all_labels, all_preds, average='macro')
 
-print(f"\nTest Accuracy : {acc:.4f}")
+print(f"\nTest Accuracy : {accuracy:.4f}")
 print(f"Macro F1      : {macro_f1:.4f}")
 print(f"\nPer-class report:")
 print(classification_report(all_labels, all_preds, target_names=label_names))
@@ -71,7 +71,7 @@ print("\nConfusion matrix saved to confusion_matrix.png")
 
 with open("test_metrics.json", "w") as f:
     json.dump({
-        "test_accuracy": acc,
+        "test_accuracy": accuracy,
         "macro_f1": macro_f1,
         "per_class": classification_report(
             all_labels, all_preds,
