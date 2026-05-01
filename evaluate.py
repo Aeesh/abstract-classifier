@@ -20,7 +20,7 @@ BATCH_SIZE = 16
 with open("data/label_map.json") as f:
     maps = json.load(f)
 
-id2label = {int(k): v for k, v in maps["ids2label"].items()}
+id2label = {int(k): v for k, v in maps["id2label"].items()}
 num_labels = maps["num_labels"]
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
