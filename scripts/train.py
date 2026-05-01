@@ -40,7 +40,7 @@ CONFIG = {
 wandb.init(
     project=CONFIG["wandb_project"],
     config=CONFIG,
-    name=f"distilbert-{CONFIG['epochs']}epochs"
+    name=f"psc-distilbert-{CONFIG['epochs']}epochs"
 )
 
 # Load label map
