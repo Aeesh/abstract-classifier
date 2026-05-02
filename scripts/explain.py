@@ -85,7 +85,7 @@ def explain_prediction(text, max_length=512):
 
 
 # visualization function to display tokens with color intensity based on attribution scores
-def visualize_attributions(tokens, attributions, title="Token Attributions"):
+def visualize_attributions(tokens, attributions, title="Token Attributions", text=""):
     # Get top 30 by absolute value
     abs_attrs = np.abs(attributions)
     top_indices = np.argsort(abs_attrs)[-30:][::-1]
@@ -104,32 +104,29 @@ def visualize_attributions(tokens, attributions, title="Token Attributions"):
     plt.title(title, fontsize=13)
     plt.ylabel("Attribution Score")
     plt.tight_layout()
-    plt.savefig("token_attributions.png", dpi=150)
-    print("Attribution plot saved to token_attributions.png")
+    plt.savefig(f"token_attributions_{text}.png", dpi=150)
+    print(f"Attribution plot saved to token_attributions_{text}.png")
 
 if __name__ == "__main__":
 
-    sample_abstract_name = "DFT.txt"
+    sample_abstract_name = "monkeypox"
     sample_abstract = """
-        We report a first-principles density functional theory
-        study with Hubbard U corrections (DFT+U) on four binary
-        tungstate systems of the wolframite family: (Mn,X)WO4 where
-        X = Fe, Co, Ni, and Zn. The Hubbard U parameters were derived
-        from linear response theory, providing a non-empirical correction
-        to d-orbital self-interaction errors. Both ferromagnetic (FM) and
-        antiferromagnetic (AFM) spin configurations were considered.
-        All converged systems are indirect-gap semiconductors with band
-        gaps ranging from 2.236 eV (MnFeWO4, FM) to 2.432 eV
-        (MnZnWO4). The gap follows the trend Zn > Ni > Co > Fe,
-        correlating with the d-shell filling of the X-site cation. The AFM
-        configuration is the ground state for MnCoWO4 and MnNiWO4;
-        MnZnWO4 is magnetically degenerate. Band gap differences
-        between FM and AFM are less than 15 meV for all systems.
-        Computed gaps are compared against experimental optical gaps
-        of the single-metal end-member wolframites; the binary values
-        lie between the MnWO4 parent (∼2.5 eV) and the X-site endmember, physically consistent with 50% A-site mixing. Band
-        structure and density of states results agree to within 0.02 eV.
-        Index Terms—DFT+U, wolframite, tungstate, band gap, antiferromagnetic, linear response, electronic structure
+        Monkeypox (Mpox) is an infectious disease caused by a virus belonging to the same family as the smallpox virus, presenting significant diagnostic challenges due to its visual
+        similarity to other skin conditions like chickenpox. While PCR testing remains the gold
+        standard for diagnosis, it is often inaccessible in resource-limited settings, necessitating
+        the development of rapid and reliable alternative detection methods [1].
+        In this work, we extend the study by Ahsan et al. [2] which proposed a modified VGG16
+        model for Monkeypox detection, achieving an accuracy of 0.97 ± 0.018% (AUC = 97.2)
+        in their primary (study one) experiment. To enhance this baseline, we implemented several key improvements: (1) replacing VGG16 with the modern ConvNeXt architecture
+        to leverage its transformer-inspired design for better feature extraction, (2) applying advanced hyperparameter optimization techniques, and (3) incorporating explainable AI
+        methods like Grad-CAM to improve model interpretability.
+        Our enhanced model achieved a peak accuracy of 88.89% (precision: 1.0000, recall:
+        0.7778, F1-score: 0.8750) on the test set, surpassing the original study’s test accuracy of
+        83% ± 0.085. Notably, the model demonstrated robust specificity (1.0000) and a test AUC
+        of 0.89, highlighting its potential for clinical deployment. Despite challenges posed by the
+        limited dataset size, our improvements in architecture and optimization underscore the
+        viability of deep learning for Monkeypox detection, particularly in resource-constrained
+        regions like East Africa, where recent outbreaks have been reported
     """
     result = explain_prediction(sample_abstract)
 
@@ -144,7 +141,8 @@ if __name__ == "__main__":
     visualize_attributions(
         result['tokens'],
         result['attributions'],
-        title=f"Token Attributions → {result['predicted_class']}"
+        title=f"Token Attributions → {result['predicted_class']}",
+        text=sample_abstract_name
     )
 
     with open(f"explanation_{sample_abstract_name}.json", "w") as f:
