@@ -72,7 +72,7 @@ if st.button("Classify") and abstract.strip():
             def forward_func(embeds):
                 return model(inputs_embeds=embeds).logits
 
-            ig = IntegratedGradients(predict_proba)
+            ig = IntegratedGradients(forward_func)
             attributions, _ = ig.attribute(
                 embeddings, baseline_embeddings,
                 target=pred_id, n_steps=30, return_convergence_delta=True
