@@ -4,7 +4,7 @@ A fine-tuned DistilBERT model that classifies scientific paper abstracts into 11
 
 **88% test accuracy · 0.877 macro F1 · 11 classes · 28,388 training examples**
 
-🚀 **[Live Demo — Streamlit App](YOUR_HUGGINGFACE_SPACES_LINK_HERE)**
+🚀 **[Live Demo — Streamlit App](https://huggingface.co/spaces/aeesh1/arxiv-abstract-classifier)**
 🤗 **[Model on HuggingFace Hub](https://huggingface.co/aeesh1/arxiv-abstract-classifier)**
 📊 **[WandB Training Run](https://wandb.ai/aeesh-aeesh/arxiv-abstract-classifier/runs/l5quax1q)**
 💻 **[GitHub Repository](https://github.com/aeesh/abstract-classifier.git)**
@@ -83,7 +83,7 @@ Full experiment tracked on WandB: [https://wandb.ai/aeesh-aeesh/arxiv-abstract-c
 
 ![Confusion Matrix](results/confusion_matrix.png)
 
-The main error patterns are semantically meaningful rather than random:
+The main error patterns are semantically meaningful and not random:
 
 - **cs.AI ↔ cs.NE**: 29 cs.NE papers predicted as cs.AI and 21 cs.AI papers as cs.NE — both fields share neural network, transformer, and optimisation vocabulary almost identically. This reflects a real structural ambiguity in how arXiv categorises interdisciplinary ML papers.
 - **cs.AI → cs.CV**: 14 cs.AI papers predicted as cs.CV — deep learning papers focused on visual tasks sit genuinely at this boundary.
@@ -120,6 +120,8 @@ Reasonable. The abstract describes a neural TTS system built on fine-tuned langu
 **Predicted: cs.CE — Computational Engineering (70.3% confidence)**
 
 This abstract is from a first-principles computational materials science paper, a domain entirely outside the 11 training categories. The model maps it to cs.CE, the nearest available class, because computational methods and numerical simulation vocabulary overlap. This is the expected and correct failure mode for a closed-vocabulary classifier: instead of crashing or hallucinating a wrong-category with false confidence, it falls back to the most semantically adjacent known class at moderate confidence. A deployed system would benefit from an explicit out-of-distribution detector to flag inputs like this rather than returning a misleading prediction.
+
+**NB: A condensed version of the same abstract produced 91.9% confidence vs 70.3% for the full version, suggesting the model's signal degrades as domain-specific out-of-vocabulary terms increase, consistent with expected OOD behaviour
 
 ---
 
